@@ -1,0 +1,21 @@
+@import "../../styles/base";
+
+.address {
+  background-color: $background-alt;
+  width: 100%;
+  padding: 1rem;
+  &__anchor {
+    color: $accent;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: underline;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+  &__label {
+    font-size: 0.8rem;
+    color: $foreground-alt;
+    margin-bottom: 0.2rem;
+  }
+}

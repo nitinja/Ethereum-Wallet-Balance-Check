@@ -1,0 +1,10 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &__mainTitle {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom:1rem;
+  }
+}
