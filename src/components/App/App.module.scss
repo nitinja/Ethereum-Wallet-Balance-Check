@@ -1,4 +1,4 @@
-@import '../../styles/base';
+// @import '../../styles/base';
 
 .container {
   max-width: 1400px;
@@ -11,15 +11,4 @@
 
 .resultsSection {
   flex:1;
-}
-
-.errorMessage {
-  width:100%;
-  padding:1rem;
-  margin: 1rem 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: $error;
-  color: $white;
 }

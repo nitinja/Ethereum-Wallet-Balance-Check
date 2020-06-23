@@ -1,13 +1,5 @@
 import React, { ReactElement } from 'react'
 
-interface Props {
-    
-}
+const Footer = React.memo((): ReactElement  => <div className="flex-center">Ⓒ Gnoisis</div>);
+export default Footer;
 
-export default function Footer({}: Props): ReactElement {
-    return (
-        <div className="flex-center">
-            Ⓒ Gnoisis 
-        </div>
-    )
-}

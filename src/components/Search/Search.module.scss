@@ -1,40 +1,75 @@
-@import '../../styles/base';
+@import "../../styles/base";
 
 .search {
-  background-color: $background-alt;
-  padding:1rem;
+  background-color: $background;
+  padding: 1rem;
+  border-radius: 4px;
   &__formGroup {
     margin: 1rem 0;
   }
   &__fieldLabel {
     display: block;
     font-size: 0.8rem;
-    color: $foreground-alt;
     margin-bottom: 0.2rem;
   }
   &__field {
-    width:100%;
+    width: 100%;
+    border:none;
+    border-radius: 4px;
+
   }
   &__field.invalid {
-    border:2px solid $error;
+    border: 2px solid $error;
   }
-  
+
   &__errorMessage {
     font-size: 0.8rem;
     color: $error;
   }
   &__searchButton {
-    margin-top: 1rem; 
-    height:2rem;
-    width:100%;
+    margin-top: 1rem;
+    height: 2rem;
+    width: 100%;
     color: $white;
     background-color: $accent;
     border: none;
-    border-radius: 4px;;
+    border-radius: 4px;
   }
   &__searchButton:disabled {
     background-color: $foreground-alt;
     border: none;
-    border-radius: 4px;;
+    border-radius: 4px;
   }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .search {
+    &__form {
+      display: flex;
+      align-items: flex-start;
+    }
+    &__formGroup {
+      margin: 0 1rem 0 0;
+    }
+    &__searchButton {
+      width: 10rem;
+      margin-top: 1.2rem;
+    }
+    &__inputContainer {
+      flex:4
+    }
+    &__selectContainer {
+      // margin: 0 1rem;
+      flex:2;
+    }
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
 }

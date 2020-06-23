@@ -1,26 +1,6 @@
-import React, { useState } from "react";
-// export function getData(key: string) {
-//   if (!localStorage) {
-//     return;
-//   }
-//   try {
-//     const data = JSON.parse(localStorage.getItem(key) || '[]');
-//     return data;
-//   } catch (error) {
-//     console.log(`Error accessing ${key} from local storage.`);
-//   }
-// }
-// export function setData(key: string, data:string) {
-//   if (!localStorage) {
-//     return;
-//   }
-//   try {
-//     localStorage.setItem(key, JSON.stringify(data));
-//   } catch (error) {
-//     console.log(`Error storing ${key} from local storage.`);
-//   }
-// }
+import { useState, useEffect } from "react";
 
+/* Reusable hook to get/set from local storage */
 export function useLocalStorage<T>(
   key: string,
   initialValue: T
@@ -33,6 +13,14 @@ export function useLocalStorage<T>(
       console.log(`Error accessing ${key} from local storage.`);
     }
   });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+      console.log(`Error storing ${key} to local storage.`);
+    }
+  }, [key, value]);
 
   if (!localStorage) {
     throw new Error("localstorage not available.");

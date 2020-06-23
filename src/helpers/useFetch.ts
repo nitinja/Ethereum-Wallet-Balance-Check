@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
+/* Reusable hook to fetch data and maintain loading/error states */
 export function useFetch<T>(
   url: string,
   initialData: T,
@@ -7,7 +8,7 @@ export function useFetch<T>(
 ): [T, boolean, string|null] {
   const [data, setData] = useState<T>(initialData);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string|null>("");
+  const [error, setError] = useState<string|null>(null);
 
   useEffect(() => {
     if (!url) {
@@ -15,11 +16,12 @@ export function useFetch<T>(
     }
     async function getData() {
       setLoading(true);
-      setError("");
+      setError(null);
       try {
         const response = await fetch(url);
         if (response.status === 200) {
           const json = await response.json();
+          /* Transform if needed after successful query */
           setData(
             resultTransformFunction ? resultTransformFunction(json) : json
           );

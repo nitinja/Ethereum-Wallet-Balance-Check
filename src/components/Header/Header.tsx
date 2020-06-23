@@ -1,17 +1,21 @@
-import React, { ReactElement } from 'react'
-import HistoryMenu from './HistoryMenu'
+import React, { ReactElement } from 'react';
 import styles from './Header.module.scss';
+import HistoryMenu from './HistoryMenu';
 interface Props {
-    
+    searchHistory: string[]; 
+    onSelectAddress: (address:string) => void
 }
 
-export default function Header({}: Props): ReactElement {
+/* Memoised Header and menu */
+const Header = React.memo(({searchHistory, onSelectAddress}: Props): ReactElement  => {
     return (
         <div className={styles.header}>
-            <div className={styles.header__mainTitle}>ETHEREUM CHECKER</div>
+            <div className={styles.header__mainTitle}>ETHEREUM BALANCE CHECKER</div>
             <div className={styles.header__historyMenu}>
-                <HistoryMenu/>
+                <HistoryMenu searchHistory={searchHistory} onSelectAddress={onSelectAddress}/>
             </div>
         </div>
     )
-}
+})
+
+export default Header;

@@ -1,6 +1,7 @@
-import React, { ReactElement, useState } from 'react'
-import styles from './Modal.module.scss';
+import React, { ReactElement } from 'react';
 import { createPortal } from 'react-dom';
+import styles from './Modal.module.scss';
+
 interface Props {
     visible:boolean;
     setVisible:(visible: boolean) => void;
@@ -8,8 +9,10 @@ interface Props {
     title: string
 }
 
+/* A reusable modal component using react portals for accessibility */
 export default function Modal({children, visible, setVisible, title}: Props): ReactElement|null {
         if (visible){
+            /* create portal */
             return createPortal(
                 <aside className={styles.modal__overlay}>
                     <div className={styles.modal__container}>

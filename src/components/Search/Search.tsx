@@ -1,8 +1,8 @@
 
-import React, { ReactElement, useState, useEffect } from 'react'
-import styles from './Search.module.scss';
-import { Networks, ApiNetworkTypes } from '../../model/Networks';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { isEthereumAddressValid } from '../../helpers/validations';
+import { ApiNetworkTypes, Networks } from '../../model/Networks';
+import styles from './Search.module.scss';
 
 interface Props {
     ethereumAddress: string;
@@ -11,24 +11,30 @@ interface Props {
 
 const networksList: Networks[] = Object.keys(ApiNetworkTypes) as Networks[];
 
+/* Search component with network selection option */
 export default function Search({ ethereumAddress, onSearchRequest }: Props): ReactElement {
     const [address, setAddress] = useState(ethereumAddress || '');
     const [network, setNetwork] = useState<Networks>("Mainnet");
+
+    /* Used for setting new address thru history menu. */
     const [oldAddress, setOldAddress] = useState(() => ethereumAddress || '');
+
+    /* For validations */
     const [addressFieldInvalid, setAddressFieldInvalid] = useState(false);
     const [addressFieldBlured, setAddressFieldBlured] = useState(false);
 
+    /* Used for sending history item to this component */
     if (ethereumAddress !== oldAddress) {
         setAddress(ethereumAddress);
         setOldAddress(ethereumAddress);
     }
 
-    const handleAddressChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { value } = event.target;
-        // console.log("in onchange", value);
-        setAddress(value);
+    /* Note that "useCallback()" is not necessary on below functions, we are not passing those as props to components */
+
+    const handleAddressChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+        setAddress(target.value);
     }
-    
+
     const handleNetworkChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const { value } = event.target;
         console.log("in select onchange", value);
@@ -38,30 +44,29 @@ export default function Search({ ethereumAddress, onSearchRequest }: Props): Rea
     const handleAddressBlur = () => {
         setAddressFieldBlured(true);
     }
-    
+
     const handleSearch = (event: React.FormEvent) => {
         event.preventDefault();
-        if(!addressFieldInvalid){
+        if (!addressFieldInvalid) {
             onSearchRequest(address, network);
         }
     }
 
     useEffect(() => {
         const isAddressFieldInvalid = addressFieldBlured && !isEthereumAddressValid(address);
-        // console.log("validating", address, addressFieldBlured, isAddressFieldInvalid)
         setAddressFieldInvalid(isAddressFieldInvalid);
-    },[address, addressFieldBlured]);
+    }, [address, addressFieldBlured]);
 
     return (
         <div className={styles.search}>
-            <form onSubmit={handleSearch}>
-                <div className={styles.search__formGroup}>
+            <form onSubmit={handleSearch} className={styles.search__form}>
+                <div className={`${styles.search__formGroup} ${styles.search__inputContainer}`}>
                     <label className={styles.search__fieldLabel} htmlFor="search-input">Ethereum Address</label>
                     <input required value={address} id="search-input" onChange={handleAddressChange} onBlur={handleAddressBlur} autoComplete="off"
                         type="text" placeholder="Enter Ethereum address" className={`${styles.search__field} ${!addressFieldInvalid ? ' invalid' : ''}`} />
                     {addressFieldInvalid && <div className={styles.search__errorMessage}>Please enter valid Ethereum address.</div>}
                 </div>
-                <div className={styles.search__formGroup}>
+                <div className={`${styles.search__formGroup} ${styles.search__selectContainer}`}>
                     <label className={styles.search__fieldLabel} htmlFor="network-select">Network</label>
                     <select className={styles.search__field} id="network-select" value={network} onChange={handleNetworkChange}>
                         {networksList.map((network, index) => <option key={index} value={network}>{network}</option>)}

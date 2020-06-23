@@ -17,31 +17,23 @@
   &__container {
     z-index: 99;
     position: relative;
-    width: 100%;
     padding: 1.5rem;
-    max-width: 320px;
-    max-height: 100%;
     margin: 0 auto;
     background: white;
+    text-align: center;
   }
   &__title {
     font-size: 1.4rem;
   }
 
   &__closeButton {
+    font-weight: bold;
     position: absolute;
     top: 1rem;
     right: 1rem;
     padding: 5px;
     border: 0;
     background: none;
-    // color: white;
     cursor: pointer;
-  }
-
-  &__body {
-    padding: 2rem;
-    border-radius: 4px;
-    // background-color: white;
   }
 }
