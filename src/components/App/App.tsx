@@ -29,9 +29,9 @@ function App() {
   const [transactionsApiUrl, setTransactionsApiUrl] = useState('');
 
   /* useFetch custom hook that fetches data and handles loading as well as error */
-  const [balance, balanceLoading, balanceError] = useFetch<number>(balanceApiUrl, 0, transformResponse)
-  const [transactions, transactionsLoading, transactionsError] = useFetch<Transaction[]>(transactionsApiUrl, [], transformResponse)
-  const [exchangeRates, exchangeRatesLoading, exchangeRatesError] = useFetch<ExchangeResponse>(getExchangeApiUrl(), { ethusd: 0 }, transformResponse);
+  const [balance, balanceLoading, balanceError] = useFetch<number|null>(balanceApiUrl, null, transformResponse)
+  const [transactions, transactionsLoading, transactionsError] = useFetch<Transaction[]|null>(transactionsApiUrl, null, transformResponse)
+  const [exchangeRates, exchangeRatesLoading, exchangeRatesError] = useFetch<ExchangeResponse|null>(getExchangeApiUrl(), null, transformResponse);
 
   /* History menu entries in local storage managed as custom hook */
   const [searchHistory, saveSearchHistory] = useLocalStorage<string[]>(HISTORY_LOCAL_STORAGE_KEY, []);
@@ -66,7 +66,7 @@ function App() {
             <AddressLink ethereumAddress={validatedEthereumAddress} />
             {balanceError
               ? <div className="errorMessage">Error occurred while loading Balance.</div>
-              : <BalanceOutput wei={balance} exchangeRateUSD={exchangeRates.ethusd} balanceLoading={balanceLoading} exchangeRatesLoading={exchangeRatesLoading} exchangeRatesError={exchangeRatesError} />}
+              : <BalanceOutput wei={balance} exchangeRateUSD={exchangeRates?.ethusd} balanceLoading={balanceLoading} exchangeRatesLoading={exchangeRatesLoading} exchangeRatesError={exchangeRatesError} />}
             {transactionsError
               ? <div className="errorMessage">Error occurred while loading Transactions.</div>
               : <TransactionsTable transactions={transactions} transactionsLoading={transactionsLoading} />}

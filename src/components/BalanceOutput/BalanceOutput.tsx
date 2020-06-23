@@ -4,9 +4,9 @@ import Loader from "../Loader";
 import styles from "./BalanceOutput.module.scss";
 
 interface Props {
-  wei: number;
+  wei: number | null;
   balanceLoading: boolean;
-  exchangeRateUSD: number;
+  exchangeRateUSD: number | undefined;
   exchangeRatesLoading: boolean;
   exchangeRatesError: string | null;
 }
@@ -19,15 +19,21 @@ export default function BalanceOutput({
   exchangeRatesLoading,
   exchangeRatesError
 }: Props): ReactElement {
-  const ether = convertWeiToEther(wei); // convert from wei to Ether
-  const valueUSD = (ether * exchangeRateUSD);
+
+  let ether, valueUSD;
+  if(wei !== null){
+    ether = convertWeiToEther(wei); // convert from wei to Ether
+    if(typeof exchangeRateUSD !== 'undefined'){
+      valueUSD = (ether * exchangeRateUSD || 0);
+    }
+  }
   return (
     <div className={styles.balance}>
       {balanceLoading ? <Loader /> : <>
         <div className={styles.balance__container}>
           <div className={styles.balance__label}>Balance</div>
           <div className={styles.balance__balanceUnit}>
-            <div className={styles.balance__value}>{ether.toFixed(4)}</div>
+            <div className={styles.balance__value}>{ether?.toFixed(4)}</div>
             <div className={styles.balance__unit}>Ether</div>
           </div>
         </div>
@@ -36,7 +42,7 @@ export default function BalanceOutput({
           {exchangeRatesError ? <div>Error</div> : <div className={styles.balance__container}>
             <div className={styles.balance__label}>Ether Value</div>
             <div className={styles.balance__balanceUnit}>
-              <div className={styles.balance__value}>{valueUSD.toFixed(2)}</div>
+              <div className={styles.balance__value}>{valueUSD?.toFixed(2)}</div>
               <div className={styles.balance__unit}>$</div>
             </div>
             <div className={styles.balance__label}>Rate: {exchangeRateUSD}$/ETH</div>

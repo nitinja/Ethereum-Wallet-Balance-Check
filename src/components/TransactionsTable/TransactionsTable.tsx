@@ -5,7 +5,7 @@ import Loader from "../Loader";
 import { convertTimestampToDaysHours, convertWeiToEther } from "../../helpers/converters";
 
 interface Props {
-  transactions: Transaction[];
+  transactions: Transaction[] | null;
   transactionsLoading: boolean;
 }
 
@@ -14,41 +14,43 @@ export default function TransactionsTable({
   transactions,
   transactionsLoading,
 }: Props): ReactElement {
-
-  const transformedTransaction = transformTransactionsList(transactions);
+  let transformedTransaction: any[] = [] as any;
+  if (transactions !== null) {
+    transformedTransaction = transformTransactionsList(transactions);
+  }
 
   return (
-      <div className={styles.transactionsContainer}>
-        <div className={styles.transactionsContainer__title}>
-          Recent Transactions
+    <div className={styles.transactionsContainer}>
+      <div className={styles.transactionsContainer__title}>
+        Recent Transactions
         </div>
-        {transactionsLoading ? <Loader /> :
-          <div className={styles.tableStyle}>
-            <table>
-              <thead>
-                <tr>
-                  <th>Hash</th>
-                  <th>Block</th>
-                  <th>Age</th>
-                  <th>From</th>
-                  <th>To</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                {transformedTransaction.map(transaction => (<tr key={transaction.hash}>
-                  <td title={transaction.hash}>{transaction.hash}</td>
-                  <td title={transaction.blockNumber}>{transaction.blockNumber}</td>
-                  <td title={transaction.date}>{transaction.age}</td>
-                  <td title={transaction.from}>{transaction.from}</td>
-                  <td title={transaction.to}>{transaction.to}</td>
-                  <td title={`${transaction.valueInEther}`}>{transaction.valueInEther} Ether</td>
-                </tr>))}
-              </tbody>
-            </table>
-          </div>
-        }
-      </div>
+      {transactionsLoading ? <Loader /> :
+        <div className={styles.tableStyle}>
+          <table>
+            <thead>
+              <tr>
+                <th>Hash</th>
+                <th>Block</th>
+                <th>Age</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              {transformedTransaction.map(transaction => (<tr key={transaction.hash}>
+                <td title={transaction.hash}>{transaction.hash}</td>
+                <td title={transaction.blockNumber}>{transaction.blockNumber}</td>
+                <td title={transaction.date}>{transaction.age}</td>
+                <td title={transaction.from}>{transaction.from}</td>
+                <td title={transaction.to}>{transaction.to}</td>
+                <td title={`${transaction.valueInEther}`}>{transaction.valueInEther} Ether</td>
+              </tr>))}
+            </tbody>
+          </table>
+        </div>
+      }
+    </div>
   );
 }
 

@@ -5,10 +5,10 @@ export function useFetch<T>(
   url: string,
   initialData: T,
   resultTransformFunction?: (result: any) => T
-): [T, boolean, string|null] {
-  const [data, setData] = useState<T>(initialData);
+): [T | null, boolean, string | null] {
+  const [data, setData] = useState<T | null>(initialData);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string|null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!url) {
@@ -29,13 +29,14 @@ export function useFetch<T>(
           throw new Error("Error occurred, while getting data from server.");
         }
       } catch (error) {
+        setData(initialData);
         setError(error.message);
       } finally {
         setLoading(false);
       }
     }
     getData();
-  }, [url, resultTransformFunction]);
+  }, [url, resultTransformFunction, initialData]);
 
   return [data, loading, error];
 }
