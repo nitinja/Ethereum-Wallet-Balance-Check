@@ -1,6 +1,7 @@
 import React, { ReactElement, useCallback, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "./HistoryMenu.module.scss";
+import FocusTrap from 'focus-trap-react';
 
 interface Props {
   searchHistory: string[];
@@ -26,13 +27,15 @@ const HistoryMenu = React.memo(({ searchHistory, onSelectAddress }: Props): Reac
     return createPortal(
       <div className={styles.menu__overlay} onClick={() => setMenuVisible(false)}>
         <div className={styles.menu__dropdown} style={{ top, right }}>
-          <ul className={styles.menu__list}>
-            {searchHistory.map((item) => (
-              <li key={item} >
-                <button className={styles.menu__item} onClick={() => onSelectAddress(item)}>{item}</button>
-              </li>
-            ))}
-          </ul>
+          <FocusTrap focusTrapOptions={{ clickOutsideDeactivates: true }}>
+            <ul data-testid="history-menu" className={styles.menu__list}>
+              {searchHistory.map((item) => (
+                <li key={item} >
+                  <button className={styles.menu__item} onClick={() => onSelectAddress(item)}>{item}</button>
+                </li>
+              ))}
+            </ul>
+          </FocusTrap>
         </div>
       </div>,
       document.body
@@ -41,7 +44,7 @@ const HistoryMenu = React.memo(({ searchHistory, onSelectAddress }: Props): Reac
 
   return (
     <>
-      <button ref={ref} className={styles.menu__button} onClick={toggleMenu} disabled={!searchHistory || !searchHistory.length}>
+      <button data-testid="history-button" ref={ref} className={styles.menu__button} onClick={toggleMenu} disabled={!searchHistory || !searchHistory.length}>
         Search History ▾
       </button>
       {menuVisible && getMenu()}

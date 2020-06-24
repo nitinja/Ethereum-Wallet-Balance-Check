@@ -9,21 +9,20 @@
   }
   &__fieldLabel {
     display: block;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     margin-bottom: 0.2rem;
   }
   &__field {
     width: 100%;
-    border:none;
+    border: none;
     border-radius: 4px;
-
   }
   &__field.invalid {
     border: 2px solid $error;
   }
 
   &__errorMessage {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: $error;
   }
   &__searchButton {
@@ -54,14 +53,14 @@
     }
     &__searchButton {
       width: 10rem;
-      margin-top: 1.2rem;
+      margin-top: 1.3rem;
     }
     &__inputContainer {
-      flex:4
+      flex: 4;
     }
     &__selectContainer {
       // margin: 0 1rem;
-      flex:2;
+      flex: 2;
     }
   }
 }

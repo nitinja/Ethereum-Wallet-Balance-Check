@@ -21,9 +21,11 @@
     margin: 0 auto;
     background: white;
     text-align: center;
+    border-radius: 0.4rem;
   }
   &__title {
     font-size: 1.4rem;
+    text-align: left;
   }
 
   &__closeButton {

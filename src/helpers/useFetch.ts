@@ -19,6 +19,7 @@ export function useFetch<T>(
       setError(null);
       try {
         const response = await fetch(url);
+
         if (response.status === 200) {
           const json = await response.json();
           /* Transform if needed after successful query */

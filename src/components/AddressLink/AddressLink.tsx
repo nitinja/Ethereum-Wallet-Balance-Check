@@ -32,14 +32,14 @@ export default function AddressLink({ ethereumAddress }: Props): ReactElement {
   }, [ethereumAddress])
 
   return (
-    <div className={styles.address}>
+    <section className={styles.address}>
       <label className={styles.address__label}>Address:</label>
-      <button className={styles.address__anchor} onClick={handleAddressClick}>{ethereumAddress}</button>
-      <Modal visible={popupVisible} setVisible={setPopupVisible} title="QR Code">
+      <button className={styles.address__anchor} onClick={handleAddressClick} title="click to reveal QR Code">{ethereumAddress}</button>
+      {popupVisible && <Modal setVisible={setPopupVisible} title="QR Code">
         {qrCodeError && <div className="errorMessage">{qrCodeError}</div>}
         {qrCodeDataUrl && <img src={qrCodeDataUrl} alt={`QR code for ethereum address ${ethereumAddress}`} />}
         <div>{ethereumAddress}</div>
-      </Modal>
-    </div>
+      </Modal>}
+    </section>
   );
 }

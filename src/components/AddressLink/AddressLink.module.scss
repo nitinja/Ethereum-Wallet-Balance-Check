@@ -8,16 +8,21 @@
   padding: 1rem;
   &__anchor {
     color: $accent;
+    background-color: transparent;
     font-size: 1.1rem;
     font-weight: bold;
     text-decoration: underline;
     border: 0;
     padding: 0;
     cursor: pointer;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
   &__label {
     font-size: 0.8rem;
     color: $foreground-alt;
-    margin: 1rem;
+    margin: 1rem 1rem 1rem 0;
   }
 }

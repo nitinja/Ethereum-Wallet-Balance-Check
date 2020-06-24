@@ -37,7 +37,6 @@ export default function Search({ ethereumAddress, onSearchRequest }: Props): Rea
 
     const handleNetworkChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const { value } = event.target;
-        console.log("in select onchange", value);
         setNetwork(value as Networks);
     }
 
@@ -45,7 +44,7 @@ export default function Search({ ethereumAddress, onSearchRequest }: Props): Rea
         setAddressFieldBlured(true);
     }
 
-    const handleSearch = (event: React.FormEvent) => {
+    const handleSearch = (event: React.MouseEvent) => {
         event.preventDefault();
         if (!addressFieldInvalid) {
             onSearchRequest(address, network);
@@ -58,22 +57,22 @@ export default function Search({ ethereumAddress, onSearchRequest }: Props): Rea
     }, [address, addressFieldBlured]);
 
     return (
-        <div className={styles.search}>
-            <form onSubmit={handleSearch} className={styles.search__form}>
+        <section className={styles.search}>
+            <form className={styles.search__form}>
                 <div className={`${styles.search__formGroup} ${styles.search__inputContainer}`}>
                     <label className={styles.search__fieldLabel} htmlFor="search-input">Ethereum Address</label>
-                    <input required value={address} id="search-input" onChange={handleAddressChange} onBlur={handleAddressBlur} autoComplete="off"
+                    <input data-testid="search-input" value={address} id="search-input" onChange={handleAddressChange} onBlur={handleAddressBlur} autoComplete="off"
                         type="text" placeholder="Enter Ethereum address" className={`${styles.search__field} ${!addressFieldInvalid ? ' invalid' : ''}`} />
-                    {addressFieldInvalid && <div className={styles.search__errorMessage}>Please enter valid Ethereum address.</div>}
+                    {addressFieldInvalid && <div data-testid="input-invalid-error" className={styles.search__errorMessage}>Please enter valid Ethereum address.</div>}
                 </div>
                 <div className={`${styles.search__formGroup} ${styles.search__selectContainer}`}>
                     <label className={styles.search__fieldLabel} htmlFor="network-select">Network</label>
-                    <select className={styles.search__field} id="network-select" value={network} onChange={handleNetworkChange}>
+                    <select data-testid="network-select" className={styles.search__field} id="network-select" value={network} onChange={handleNetworkChange}>
                         {networksList.map((network, index) => <option key={index} value={network}>{network}</option>)}
                     </select>
                 </div>
-                <button className={styles.search__searchButton} disabled={!address}>Search</button>
+                <button onClick={handleSearch} data-testid="search-button" className={styles.search__searchButton} disabled={!address}>Search</button>
             </form>
-        </div>
+        </section>
     )
 }

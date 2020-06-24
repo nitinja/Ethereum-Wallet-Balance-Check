@@ -29,9 +29,9 @@ function App() {
   const [transactionsApiUrl, setTransactionsApiUrl] = useState('');
 
   /* useFetch custom hook that fetches data and handles loading as well as error */
-  const [balance, balanceLoading, balanceError] = useFetch<number|null>(balanceApiUrl, null, transformResponse)
-  const [transactions, transactionsLoading, transactionsError] = useFetch<Transaction[]|null>(transactionsApiUrl, null, transformResponse)
-  const [exchangeRates, exchangeRatesLoading, exchangeRatesError] = useFetch<ExchangeResponse|null>(getExchangeApiUrl(), null, transformResponse);
+  const [balance, balanceLoading, balanceError] = useFetch<number | null>(balanceApiUrl, null, transformResponse)
+  const [transactions, transactionsLoading, transactionsError] = useFetch<Transaction[] | null>(transactionsApiUrl, null, transformResponse)
+  const [exchangeRates, exchangeRatesLoading, exchangeRatesError] = useFetch<ExchangeResponse | null>(getExchangeApiUrl(), null, transformResponse);
 
   /* History menu entries in local storage managed as custom hook */
   const [searchHistory, saveSearchHistory] = useLocalStorage<string[]>(HISTORY_LOCAL_STORAGE_KEY, []);
@@ -58,8 +58,7 @@ function App() {
       <Search ethereumAddress={ethereumAddressFromHistory} onSearchRequest={onSearchRequest} />
 
       <hr />
-
-      <section className={styles.resultsSection}>
+      <section data-testid="results-section" className={styles.resultsSection}>
         {/* Will only be displayed in address validated by search component */}
         {validatedEthereumAddress &&
           <>

@@ -10,7 +10,7 @@ export function useLocalStorage<T>(
       const data = JSON.parse(localStorage.getItem(key) || "[]");
       return data;
     } catch (error) {
-      console.log(`Error accessing ${key} from local storage.`);
+      console.error(`Error accessing ${key} from local storage.`);
     }
   });
 
@@ -18,7 +18,7 @@ export function useLocalStorage<T>(
     try {
       localStorage.setItem(key, JSON.stringify(value));
     } catch (error) {
-      console.log(`Error storing ${key} to local storage.`);
+      console.error(`Error storing ${key} to local storage.`);
     }
   }, [key, value]);
 
