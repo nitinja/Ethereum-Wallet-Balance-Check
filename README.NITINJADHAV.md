@@ -2,6 +2,8 @@
 
 by Nitin Jadhav
 
+Deployed on netlify : [https://youthful-bartik-2df8df.netlify.app/](https://youthful-bartik-2df8df.netlify.app/)
+
 ### Features
 
 - Pure React (crete-react-app), no other library used (except `focus-trap` for accessibility)
@@ -11,6 +13,7 @@ by Nitin Jadhav
 - API Secret managed in `.env` file
 - Persistent menu with localstorage
 - Responsive app with two breakpoints
+- check [lighthouse score](lighthouse-score.png) screenshot
 
 ### Accessibility
 

@@ -27,7 +27,7 @@
   }
   &__searchButton {
     margin-top: 1rem;
-    height: 2rem;
+    height: 32px;
     width: 100%;
     color: $white;
     background-color: $accent;
@@ -53,14 +53,14 @@
     }
     &__searchButton {
       width: 10rem;
-      margin-top: 1.3rem;
+      margin-top: 1.4rem;
     }
     &__inputContainer {
       flex: 4;
     }
     &__selectContainer {
       // margin: 0 1rem;
-      flex: 2;
+      flex: 1;
     }
   }
 }
