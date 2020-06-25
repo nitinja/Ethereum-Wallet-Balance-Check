@@ -7,10 +7,6 @@ import React from "react";
 import { act } from "react-dom/test-utils";
 import App from "../components/App/App.tsx";
 
-beforeEach(() => {
-  fetch.resetMocks();
-});
-
 const server = setupServer([
   rest.get(
     "https://api.etherscan.io/api?module=account&action=balance&address=0xddbd2b932c763ba5b1b7ae3b362eac3e8d40121a&apikey=XEH2AFYZY3YYJFGA8CSQ1V8V2PRQX4GGH9",
@@ -59,7 +55,7 @@ describe("App main component", () => {
     expect(screen.queryByTestId("history-menu")).toBeNull();
   });
 
-  //Note that this test was not working even though these techniques works in every other project.
+  //Note that this integration test was not working even though these techniques works in every other project.
   //Its some configuration issue. Given some more time, this can be fixed.
 
   //   test("should show balance result when entered valid address anc clicked search button", async () => {

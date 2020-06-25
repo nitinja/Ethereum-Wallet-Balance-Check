@@ -2,12 +2,11 @@
 
 .balance {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-direction: column;
   background-color: $background;
   padding: 0 1rem;
   &__container {
-    width: 50%;
     display: flex;
     flex-direction: column;
     margin: 1rem 0;

@@ -26,7 +26,7 @@ export default function TransactionsTable({
         </div>
       {transactionsLoading ? <Loader /> :
         <div className={styles.tableStyle}>
-          <table>
+          <table data-testid="transactions-table">
             <thead>
               <tr>
                 <th>Hash</th>
@@ -38,13 +38,13 @@ export default function TransactionsTable({
               </tr>
             </thead>
             <tbody>
-              {transformedTransaction.map(transaction => (<tr key={transaction.hash}>
+              {transformedTransaction.map(transaction => (<tr key={transaction.hash} data-testid="transaction-row">
                 <td title={transaction.hash}>{transaction.hash}</td>
                 <td title={transaction.blockNumber}>{transaction.blockNumber}</td>
-                <td title={transaction.date}>{transaction.age}</td>
+                <td data-testid="transaction-date" title={transaction.date}>{transaction.age}</td>
                 <td title={transaction.from}>{transaction.from}</td>
                 <td title={transaction.to}>{transaction.to}</td>
-                <td title={`${transaction.valueInEther}`}>{transaction.valueInEther} Ether</td>
+                <td data-testid="transaction-ether-value" title={`${transaction.valueInEther}`}>{transaction.valueInEther} Ether</td>
               </tr>))}
             </tbody>
           </table>

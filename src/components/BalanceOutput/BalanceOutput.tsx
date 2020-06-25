@@ -39,7 +39,7 @@ export default function BalanceOutput({
         </div>
         {exchangeRatesLoading ? <Loader /> :
           <>
-            {exchangeRatesError ? <div>Error</div> : <div className={styles.balance__container}>
+            {exchangeRatesError ? <div>Error occurred while fetching USD value.</div> : <div className={styles.balance__container}>
               <div className={styles.balance__label}>Ether Value</div>
               <div className={styles.balance__balanceUnit}>
                 <div data-testid="usd-value" className={styles.balance__value}>{valueUSD?.toFixed(2)}</div>

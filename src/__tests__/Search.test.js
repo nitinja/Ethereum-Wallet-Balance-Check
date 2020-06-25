@@ -5,11 +5,12 @@ import userEvent from "@testing-library/user-event";
 import React from "react";
 import Search from "../components/Search/Search";
 
-let mockOnSearchRequest;
+let mockOnSearchRequest = jest.fn();
 beforeEach(() => {
-  mockOnSearchRequest = jest.fn();
+  jest.clearAllMocks();
 });
-xdescribe("Search component ", () => {
+
+describe("Search component ", () => {
   test("should initially show empty textbox and button disabled", async () => {
     render(
       <Search ethereumAddress={""} onSearchRequest={mockOnSearchRequest} />

@@ -42,13 +42,13 @@ export function getExchangeApiUrl(): string {
 function getApiUrl(
   subDomain: string,
   urlParamsObject: { [key: string]: string | number }
-  ) {
-    if (!API_KEY) {
-      throw new Error("No API Key found, please provide in .env file.");
-    }
-    const urlParamsObjectWithApiKey = Object.assign({}, urlParamsObject, {
-      apikey: API_KEY,
-  })
+) {
+  if (!API_KEY) {
+    throw new Error("No API Key found, please provide in .env file.");
+  }
+  const urlParamsObjectWithApiKey = Object.assign({}, urlParamsObject, {
+    apikey: API_KEY,
+  });
   const paramString = buildURLQuery(urlParamsObjectWithApiKey);
   return `https://${subDomain}.${API_DOMAIN}?${paramString}`;
 }

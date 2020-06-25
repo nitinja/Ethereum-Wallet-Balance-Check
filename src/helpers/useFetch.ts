@@ -31,7 +31,7 @@ export function useFetch<T>(
         }
       } catch (error) {
         setData(initialData);
-        setError(error.message);
+        setError(error.message || error || "Error occurred");
       } finally {
         setLoading(false);
       }

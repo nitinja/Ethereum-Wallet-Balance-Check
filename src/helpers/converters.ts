@@ -7,13 +7,17 @@ export function convertWeiToEther(wei: number) {
   return wei / WEI_TO_ETHER_FACTOR;
 }
 
-/* TImestamp => human readable time "ago" */
-export function convertTimestampToDaysHours(timestamp: number) {
+/* TImestamp => human readable time "ago", second param is for testing */
+export function convertTimestampToDaysHours(
+  timestamp: number,
+  currentTimeInMillis?: number
+) {
   if (!timestamp) {
     return [];
   }
   /* Provided timestamp is in seconds */
-  const diffInMillis = new Date().getTime() - timestamp * 1000;
+  const diffInMillis =
+    (currentTimeInMillis || new Date().getTime()) - timestamp * 1000;
   const totalHours = Math.trunc(diffInMillis / MILLIS_IN_HOUR);
   const days = Math.trunc(totalHours / 24);
   const hours = totalHours % 24;
