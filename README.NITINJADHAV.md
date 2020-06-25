@@ -6,7 +6,7 @@ Deployed on netlify : [https://youthful-bartik-2df8df.netlify.app/](https://yout
 
 ### Features
 
-- Pure React (crete-react-app), no other library used (except `focus-trap` for accessibility)
+- Pure React (create-react-app), no other library used (except `focus-trap` for accessibility)
 - Typescript: Generics, interfaces used
 - Hooks used, Custom hooks for fetching data, localstorage
 - BEM Methodology for CSS used along with SASS for preprocessing.
@@ -19,7 +19,7 @@ Deployed on netlify : [https://youthful-bartik-2df8df.netlify.app/](https://yout
 
 - Semantic HTML
 - App Fully keyboard navigable
-- Dialogs and menus are keyboard friendly, focus optimized
+- Dialogues and menus are keyboard friendly, focus optimized
 - Responsive table shows up as stacked items on smaller screens
 
 ### Testing
@@ -32,3 +32,7 @@ Deployed on netlify : [https://youthful-bartik-2df8df.netlify.app/](https://yout
 
 - run project: `yarn start`
 - build for production: `yarn build`
+
+### Other
+
+[Figma UX Design](https://www.figma.com/file/8Nsb8TxHWDPnAYH5KWMwbG/Ethereum-Search-App?node-id=5%3A58)
