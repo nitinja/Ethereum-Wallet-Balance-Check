@@ -1,5 +1,5 @@
 {
-  "name": "gnosis-test-app",
+  "name": "ethereum-balance-check-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
