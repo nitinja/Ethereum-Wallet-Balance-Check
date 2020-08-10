@@ -1,0 +1,13 @@
+/* Utility classes */
+.flex-container {
+    display: flex;
+  }
+  .flex-container-column {
+    display: flex;
+    flex-direction: column;
+  }
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

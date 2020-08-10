@@ -1,4 +1,6 @@
 @import "base";
+@import "components";
+@import "utilities";
 
 /* Note: BEM methodology is used to organize css */
 
@@ -50,44 +52,6 @@ svg {
 
 *:focus {
   outline: 2px solid $black;
-}
-
-/* Utility classes */
-.flex-container {
-  display: flex;
-}
-.flex-container-column {
-  display: flex;
-  flex-direction: column;
-}
-.flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Reusable Components */
-.errorMessage {
-  width: 100%;
-  padding: 1rem;
-  margin: 1rem 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: $error;
-  color: $white;
-}
-
-.loader {
-  padding: 2rem;
-}
-
-.footer {
-  padding: 2rem;
-  text-align: left;
-  font-size: 0.8rem;
-  color: $white;
-  background-color: $foreground;
 }
 
 // Medium devices (tablets, 768px and up)

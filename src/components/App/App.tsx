@@ -42,6 +42,10 @@ function App() {
     setTransactionsApiUrl(getAccountTransactionsUrl(ethereumAddress, network));
   }, []);
 
+  const performExampleSearch = useCallback(() => {
+    onSearchRequest('0x32be343b94f860124dc4fee278fdcbd38c102d88', 'Mainnet');
+  }, [onSearchRequest]);
+
   /* Add address to history local storage when searched. Only stores 5 latest searches. */
   useEffect(() => {
     if (!validatedEthereumAddress) {
@@ -71,11 +75,14 @@ function App() {
               : <TransactionsTable transactions={transactions} transactionsLoading={transactionsLoading} />}
           </>
         }
+        {!validatedEthereumAddress &&
+          <div className="flex-center">Try example address <button onClick={performExampleSearch} className="button-link">"0x32be343b94f860124dc4fee278fdcbd38c102d88"</button></div>
+        }
       </section>
+
       <Footer />
     </div>
   );
 }
 
 export default App;
-
