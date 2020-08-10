@@ -2,7 +2,9 @@
 
 by Nitin Jadhav
 
-Deployed on netlify : [https://youthful-bartik-2df8df.netlify.app/](https://youthful-bartik-2df8df.netlify.app/)
+Live demo : [https://youthful-bartik-2df8df.netlify.app/](https://youthful-bartik-2df8df.netlify.app/)
+
+![App Screenshot](./Screenshot.png)
 
 ### Features
 
